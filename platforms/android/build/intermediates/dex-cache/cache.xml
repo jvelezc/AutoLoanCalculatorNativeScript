@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\josej\.android\build-cache\add2f3843f56dd3bbfea12215798b0e998a0b1e5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="746274223beb11b1cda7854d7eec3038695c2c93">
+        <dex dex="C:\LoanCalculator\TestLoanApi\platforms\android\app\build\intermediates\pre-dexed\F0\debug\classes_63b57cdaec473a6984e1024997cab6a3b77033ef.jar" />
+    </item>
+
+</items>

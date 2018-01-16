@@ -1,0 +1,13 @@
+android {
+            defaultConfig {
+                applicationId = "org.nativescript.LoanCalculator"
+
+                if (false) {
+                    minSdkVersion = false
+                }
+
+                if (false) {
+                    targetSdkVersion = false
+                }
+            }
+        }

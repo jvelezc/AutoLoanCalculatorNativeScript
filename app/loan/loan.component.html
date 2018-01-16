@@ -1,0 +1,63 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Loan Calculator"></Label>
+</ActionBar>
+<TabView selectedIndex="0" (selectedIndexChange)="onIndexChanged($event)" sdkExampleTitle sdkToggleNavButton>
+    <StackLayout *tabItem="{title: 'Loan Form'}">
+        <RadDataForm tkExampleTitle tkToggleNavButton [source]="loanParameters">
+    
+        </RadDataForm>
+
+        <StackLayout class="input-field">
+            <button text="Get Loan Summary" row="5" col="1" (tap)="getData()"></button>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Loan Summary'}">
+        <GridLayout rows="*,*,*,*,*" columns="*,*">
+            <label text="Monthly Payment: " row="0" col="0"></label>
+            <label [text]="monthlyPayment | currency" row="0" col="1"></label>
+
+            <label text="Down Payment: " row="1" col="0"></label>
+            <label [text]="downPayment | currency" row="1" col="1"></label>
+
+            <label text="Principal: " row="2" col="0"></label>
+            <label [text]="principal | currency" row="2" col="1"></label>
+
+            <label text="Total interest: " row="3" col="0"></label>
+            <label [text]="totalInterest | currency" row="3" col="1"></label>
+
+            <label text="Total Cost: " row="4" col="0"></label>
+            <label [text]="finalCost | currency" row="4" col="1"></label>
+           
+        </GridLayout>
+
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Loan Details'}">
+
+
+        <GridLayout tkToggleNavButton>
+            <RadListView [items]="amortization">
+                <ng-template tkListItemTemplate let-item="item">
+                    <GridLayout rows="*, *, *, *" columns="*, *, *, *">
+                        <Label [text]="item.monthNumber" row="0" col="0"></Label>
+                        <Label [text]="item.interestToDate | currency" row="0" col="1"></Label>
+                        <Label [text]="item.principal | currency" row="0" col="2"></Label>
+                        <Label [text]="item.balance | currency" row="0" col="3"></Label>
+
+                    </GridLayout>
+                </ng-template>
+
+                <ng-template tkListViewHeader>
+                    <GridLayout rows="*, *, *, *" columns="*, *, *, *">
+                        <Label text="Month" row="0" col="0"></Label>
+                        <Label text="Interest" row="0" col="1"></Label>
+                        <Label text="Principal" row="0" col="2"></Label>
+                        <Label text="Balance" row="0" col="3"></Label>
+                    </GridLayout>
+
+                </ng-template>
+
+            </RadListView>
+        </GridLayout>
+
+    </StackLayout>
+</TabView>
