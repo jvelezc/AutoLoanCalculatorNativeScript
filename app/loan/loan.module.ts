@@ -7,6 +7,7 @@ import { DataManagerService } from "./../../app/datasource/data.service";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
+import { LoanDetailsComponent } from "./loandetails/loan-details.component";
 @NgModule({
     providers:[DataManagerService],
     imports: [
@@ -17,7 +18,8 @@ import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angul
         LoanRoutingModule
     ],
     declarations: [
-        LoanComponent
+        LoanComponent,
+        LoanDetailsComponent
       
     ],
     schemas: [

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class DataManagerService {
 
     constructor(public http: Http) {}
-
+    public sharedLoanSummary:LoanSummary = new LoanSummary();
   
     public GetLoanSummaryData(loanModel: LoanModel):Promise<LoanSummary> {
         let loanSummaryData = new LoanSummary();
@@ -18,6 +18,7 @@ export class DataManagerService {
         return  this.http.post("http://loancalculatornativoplus.azurewebsites.net/api/v1.0/LoanCalculator", loanModel, { headers: myHeader })
             .toPromise().then(data => {
                 loanSummaryData = <LoanSummary>data.json();
+                this.sharedLoanSummary = loanSummaryData;
                 return loanSummaryData;
             },);
 

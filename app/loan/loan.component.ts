@@ -3,7 +3,6 @@ import { LoanModel, LoanSummary, AmortizationTableEntity } from './loan.model';
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular";
 import { Router, NavigationExtras } from "@angular/router";
-import { TabView, SelectedIndexChangedEventData, TabViewItem } from "ui/tab-view";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 
 @Component({
@@ -14,15 +13,9 @@ import { ObservableArray } from "tns-core-modules/data/observable-array";
 export class LoanComponent implements OnInit {
 
   
-    constructor(private dataManagerService: DataManagerService, private changeDetectionRef: ChangeDetectorRef) {
-      
-    
-    }
-   
-    ngOnInit(): void {
-     
-      
-    }
+    constructor(private dataManagerService: DataManagerService, private changeDetectionRef: ChangeDetectorRef,private routerExtension: RouterExtensions) 
+    {}
+    ngOnInit(): void {}
 
     public amortization: Array<AmortizationTableEntity> = new Array<AmortizationTableEntity>();
     public loanParameters: LoanModel = new LoanModel();
@@ -35,8 +28,6 @@ export class LoanComponent implements OnInit {
     public finalCost: number = 0;
     public tabSelectedIndex: number = 0;
     public getData() {
-
-        console.dir(this.loanParameters);
      
         this.dataManagerService.GetLoanSummaryData(this.loanParameters)
             .then(data => {
@@ -49,15 +40,18 @@ export class LoanComponent implements OnInit {
                 this.totalInterest = this.loanSummaryData.totalInterest;
                 this.totalToPay = this.loanSummaryData.interestPlusPrincipal;
                 this.finalCost = this.loanSummaryData.finalCost;
-                
-            });;
+                this.routerExtension
+                .navigate(["/loan/loandetails"], {
+                    transition: {
+                        name: "slideLeft"
+                    }
+                }); 
+               
+            });
+          
     }
 
-    public onIndexChanged(args) {
-        let tabView = <TabView>args.object;
-        this.changeDetectionRef.detectChanges();
-
-    }
+  
 
 }
 
