@@ -1,13 +1,28 @@
-<ActionBar class="action-bar">
-    <Label class="action-bar-title" text="Loan Calculator"></Label>
+<StatusBar barColor="#0288D1"></StatusBar>
+<ActionBar title="Loan Assitant" icon="" class="action-bar" backgroundColor="#03A9F4" color="#FFFFFF">
+
 </ActionBar>
 
-    <StackLayout>
-        <RadDataForm tkExampleTitle tkToggleNavButton [source]="loanParameters">
-    
-        </RadDataForm>
+<StackLayout>
+    <Label text="Payment Calculator " textWrap="true" fontSize="17sp" margin="32dp 16dp 0dp 16dp"></Label>
+    <RadDataForm tkExampleTitle tkToggleNavButton [source]="loanParameters">
+        <TKPropertyGroup tkDataFormGroups name="" hidden="false">
+            <TKDataFormGridLayout tkPropertyGroupLayout></TKDataFormGridLayout>
+            <TKEntityProperty tkPropertyGroupProperties name="loanAmount" displayName="Loan Amount" index="0" columnIndex="0"></TKEntityProperty>
 
-        <StackLayout class="input-field">
-            <button text="Get Loan Summary" row="5" col="1" (tap)="getData()"></button>
-        </StackLayout>
-    </StackLayout>
+            <TKEntityProperty tkPropertyGroupProperties name="downPayment" displayName="Down Payment" index="0" columnIndex="1"></TKEntityProperty>
+            <TKEntityProperty tkPropertyGroupProperties name="interest" displayName="Interest Rate (% APR)" index="1" columnIndex="0">
+                <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
+                    <TKPropertyEditorStyle tkPropertyEditorStyle labelHidden="true"></TKPropertyEditorStyle>
+                </TKPropertyEditor>
+            </TKEntityProperty>
+            <TKEntityProperty tkPropertyGroupProperties name="months" displayName="Months" index="1" columnIndex="1"></TKEntityProperty>
+
+
+
+        </TKPropertyGroup>
+    </RadDataForm>
+</StackLayout>
+<FAB (tap)="getData()" icon="~/icons/calculator.png" width="56" height="56" backgroundColor="#00BCD4" rippleColor="#f1f1f1"
+    class="fab-button" verticalAlignment="bottom" horizontalAlignment="right" margin="24dp 16dp">
+</FAB>
