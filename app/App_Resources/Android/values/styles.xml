@@ -24,7 +24,7 @@
 
         <item name="colorPrimary">@color/ns_primary</item>
         <item name="colorPrimaryDark">@color/ns_primaryDark</item>
-        <item name="colorAccent">@color/ns_accent</item>
+        <item name="colorAccent">#00BCD4</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
