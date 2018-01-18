@@ -4,6 +4,8 @@
 </ActionBar>
 
 <StackLayout>
+        <Label class="fa" [text]="'fa-eercast' | fonticon"></Label>
+        <Label class="fa" [text]="'fa-bluetooth' | fonticon"></Label>
     <Label text="Payment Calculator " textWrap="true" fontSize="17sp" margin="32dp 16dp 0dp 16dp"></Label>
     <RadDataForm tkExampleTitle tkToggleNavButton [source]="loanParameters">
         <TKPropertyGroup tkDataFormGroups name="" hidden="false">
@@ -17,9 +19,6 @@
                 </TKPropertyEditor>
             </TKEntityProperty>
             <TKEntityProperty tkPropertyGroupProperties name="months" displayName="Months" index="1" columnIndex="1"></TKEntityProperty>
-
-
-
         </TKPropertyGroup>
     </RadDataForm>
 </StackLayout>

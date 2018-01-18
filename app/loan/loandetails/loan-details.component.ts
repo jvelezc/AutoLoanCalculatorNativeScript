@@ -7,7 +7,7 @@ import { Router, NavigationExtras } from "@angular/router";
 import { TabView, SelectedIndexChangedEventData, TabViewItem } from "ui/tab-view";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { Page } from 'tns-core-modules/ui/page';
-
+import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 
 @Component({
 	selector: "LoanDetails",
@@ -24,12 +24,14 @@ export class LoanDetailsComponent implements OnInit {
 	public totalInterest: number = 0;
 	public totalToPay: number = 0;
 	public finalCost: number = 0;
-	constructor(private dataManagerService: DataManagerService, private routerExtension: RouterExtensions,
+
+	constructor(
+		private dataManagerService: DataManagerService, 
+		private routerExtension: RouterExtensions,
+		private fonticon: TNSFontIconService,
 	private page: Page) {
 	 }
-	ngOnInit(): void {
-		console.log(this.dataManagerService.sharedLoanSummary);
-
+	ngOnInit(): void {	
 		
 		this.amortization = this.dataManagerService.sharedLoanSummary.amortizationTable;
 		this.monthlyPayment = this.dataManagerService.sharedLoanSummary.monthlyPayment;
@@ -38,7 +40,6 @@ export class LoanDetailsComponent implements OnInit {
 		this.totalInterest = this.dataManagerService.sharedLoanSummary.totalInterest;
 		this.totalToPay = this.dataManagerService.sharedLoanSummary.interestPlusPrincipal;
 		this.finalCost = this.dataManagerService.sharedLoanSummary.finalCost;
-
 	}
 	back() {
 		this.routerExtension.back();

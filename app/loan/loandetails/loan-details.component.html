@@ -1,7 +1,8 @@
-<ActionBar title="Title" icon="" class="action-bar">
+<ActionBar title="Loan Details" icon="" class="action-bar">
   <NavigationButton text="Back" android.systemIcon="ic_menu_back" (tap) = "back()"></NavigationButton>
 </ActionBar>
 <TabView selectedIndex="0"  sdkExampleTitle sdkToggleNavButton>
+       
     <StackLayout *tabItem="{title: 'Loan Summary'}">
         <GridLayout rows="*,*,*,*,*" columns="*,*">
             <label text="Monthly Payment: " row="0" col="0"></label>
@@ -21,7 +22,7 @@
            
         </GridLayout>
 
-    </StackLayout>
+    </StackLayout> 
     <StackLayout *tabItem="{title: 'Loan Details'}">
         <GridLayout tkToggleNavButton>
             <RadListView [items]="amortization">
