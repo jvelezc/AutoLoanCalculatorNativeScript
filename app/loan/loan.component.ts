@@ -4,6 +4,7 @@ import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular";
 import { Router, NavigationExtras } from "@angular/router";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
+import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 
 @Component({
     selector: "Loan",
@@ -13,7 +14,8 @@ import { ObservableArray } from "tns-core-modules/data/observable-array";
 export class LoanComponent implements OnInit {
 
   
-    constructor(private dataManagerService: DataManagerService, private changeDetectionRef: ChangeDetectorRef,private routerExtension: RouterExtensions) 
+    constructor(private dataManagerService: DataManagerService, private changeDetectionRef: ChangeDetectorRef,private routerExtension: RouterExtensions,
+        private fonticon: TNSFontIconService) 
     {}
     ngOnInit(): void {}
 
@@ -30,6 +32,7 @@ export class LoanComponent implements OnInit {
     public getData() {
      
         this.dataManagerService.GetLoanSummaryData(this.loanParameters)
+        
             .then(data => {
                 this.loanSummaryData = data;
                 

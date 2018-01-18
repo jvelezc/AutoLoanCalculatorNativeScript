@@ -8,9 +8,11 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { LoanDetailsComponent } from "./loandetails/loan-details.component";
+import { TNSFontIconModule, TNSFontIconService } from 'nativescript-ngx-fonticon';
 @NgModule({
-    providers:[DataManagerService],
+    providers:[DataManagerService,TNSFontIconService],
     imports: [
+        TNSFontIconModule,
         NativeScriptCommonModule,
         NativeScriptFormsModule ,
         NativeScriptUIListViewModule,
