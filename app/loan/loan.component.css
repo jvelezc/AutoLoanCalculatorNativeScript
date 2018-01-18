@@ -1,0 +1,49 @@
+.action-bar{
+    background-color: #03A9F4;
+    color: white;
+    height: 200dp;
+}
+
+#loan-amount{
+    font-size: 36dp;
+    font-weight: bold;
+}
+
+#monthly-payment{
+    font-size: 18dp;
+}
+
+#terms{
+    font-size: 16dp;
+}
+
+.btn{
+    color: white;
+    background-color: #00BCD4;
+    margin-top: 8dp;
+}
+
+.table{
+    background-color: #F3F3F3;
+    margin: 16dp;
+    margin-bottom: 8dp;
+    border-radius: 5;
+}
+
+#data-grid{
+    margin: 4dp 0dp;
+    text-align: center;
+}
+
+#header-grid{
+    text-align: center;
+}
+
+.header-margin{
+    margin: 8dp 0dp;
+}
+
+#error-label{
+    color:red;
+    margin-top: 16dp;
+}

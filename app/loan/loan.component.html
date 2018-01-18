@@ -1,27 +1,79 @@
 <StatusBar barColor="#0288D1"></StatusBar>
-<ActionBar title="Loan Assitant" icon="" class="action-bar" backgroundColor="#03A9F4" color="#FFFFFF">
+<ActionBar title="Loan Assitant" icon="" class="action-bar">
+    <StackLayout>
+        <Label id="loan-amount" class="center" [text]="totalToPay | currency " textWrap="true"></Label>
+        <Label id="monthly-payment" class="center" text="Monthly Payment: {{monthlyPayment | currency}} " textWrap="true"></Label>
+        <Label id="terms" class="center" [text]="loanParameters.interest + ' % APR   '  + loanParameters.months +  ' Months'" textWrap="true"
+            fontSize="16dp"></Label>
+        <Button class="btn" text="Calculate" (tap)="getData()" *ngIf="!isDataCalculated" horizontalAlignment="center"></Button>
+        <Button class="btn" text="Calculate a New Loan" (tap)="calculateNew()" *ngIf="isDataCalculated" horizontalAlignment="center"></Button>
+
+    </StackLayout>
 
 </ActionBar>
 
-<StackLayout>
-        <Label class="fa" [text]="'fa-eercast' | fonticon"></Label>
-        <Label class="fa" [text]="'fa-bluetooth' | fonticon"></Label>
-    <Label text="Payment Calculator " textWrap="true" fontSize="17sp" margin="32dp 16dp 0dp 16dp"></Label>
-    <RadDataForm tkExampleTitle tkToggleNavButton [source]="loanParameters">
-        <TKPropertyGroup tkDataFormGroups name="" hidden="false">
+<StackLayout *ngIf="!isDataCalculated">
+    <RadDataForm tkExampleTitle tkToggleNavButton #myDataForm [source]="loanParameters">
+        <TKPropertyGroup tkDataFormGroups name="Loan Terms" hidden="false">
             <TKDataFormGridLayout tkPropertyGroupLayout></TKDataFormGridLayout>
-            <TKEntityProperty tkPropertyGroupProperties name="loanAmount" displayName="Loan Amount" index="0" columnIndex="0"></TKEntityProperty>
-
-            <TKEntityProperty tkPropertyGroupProperties name="downPayment" displayName="Down Payment" index="0" columnIndex="1"></TKEntityProperty>
-            <TKEntityProperty tkPropertyGroupProperties name="interest" displayName="Interest Rate (% APR)" index="1" columnIndex="0">
+            <TKEntityProperty tkPropertyGroupProperties name="loanAmount" displayName="Loan Amount" index="0" columnIndex="0">
                 <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
-                    <TKPropertyEditorStyle tkPropertyEditorStyle labelHidden="true"></TKPropertyEditorStyle>
+                    <TKRangeValidator tkEntityPropertyValidators errorMessage="Loan Amount Cannot be Lesser than $4,500" minimum="4500" maximum="10000000"></TKRangeValidator>
+                    <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
+                    <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
                 </TKPropertyEditor>
             </TKEntityProperty>
-            <TKEntityProperty tkPropertyGroupProperties name="months" displayName="Months" index="1" columnIndex="1"></TKEntityProperty>
+
+            <TKEntityProperty tkPropertyGroupProperties name="downPayment" displayName="Down Payment" index="1" columnIndex="0">
+                <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
+                    <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
+                    <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
+                </TKPropertyEditor>
+            </TKEntityProperty>
+            <TKEntityProperty tkPropertyGroupProperties name="interest" displayName="Interest Rate (% APR)" index="2" columnIndex="0">
+                <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
+                    <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
+                    <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
+                    <TKRangeValidator tkEntityPropertyValidators errorMessage="Interest Rate cannot be lesser than .50% or higher than 30%" minimum=".50" maximum="30"></TKRangeValidator>
+                </TKPropertyEditor>
+            </TKEntityProperty>
+            <TKEntityProperty tkPropertyGroupProperties name="months" displayName="Months" index="3" columnIndex="0">
+                <TKPropertyEditor tkEntityPropertyEditor>
+                    <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
+                    <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
+                </TKPropertyEditor>
+            </TKEntityProperty>
         </TKPropertyGroup>
     </RadDataForm>
 </StackLayout>
-<FAB (tap)="getData()" icon="~/icons/calculator.png" width="56" height="56" backgroundColor="#00BCD4" rippleColor="#f1f1f1"
-    class="fab-button" verticalAlignment="bottom" horizontalAlignment="right" margin="24dp 16dp">
-</FAB>
+
+<StackLayout>
+    <RadListView *ngIf="isDataCalculated" [items]="amortization" class="table">
+        <ng-template tkListItemTemplate let-item="item">
+            <GridLayout rows="*, *, *, *" columns="65, *, *, *" id="data-grid">
+                <Label [text]="item.monthNumber" row="0" col="0" textWrap="true"></Label>
+                <Label [text]="item.interestToDate | currency" row="0" col="1" textWrap="true"></Label>
+                <Label [text]="item.principal | currency" row="0" col="2" textWrap="true"></Label>
+                <Label [text]="item.balance | currency" row="0" col="3" textWrap="true"></Label>
+
+            </GridLayout>
+        </ng-template>
+
+        <ng-template tkListViewHeader>
+            <GridLayout rows="*, auto" columns="65, *, *, *" id="header-grid">
+                <Label class="header-margin" text="Month" row="0" col="0" textWrap="true"></Label>
+                <Label class="header-margin" text="Interest" row="0" col="1" textWrap="true"></Label>
+                <Label class="header-margin" text="Principal" row="0" col="2" textWrap="true"></Label>
+                <Label class="header-margin" text="Balance" row="0" col="3" textWrap="true"></Label>
+                <StackLayout orientation="horizontal" row="1" colSpan="4" class="hr-dark" opacity=".4">
+
+                </StackLayout>
+            </GridLayout>
+
+        </ng-template>
+
+    </RadListView>
+
+
+
+</StackLayout>
