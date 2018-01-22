@@ -3,8 +3,8 @@
     <StackLayout>
         <Label id="monthly-payment" class="center" text="Monthly Payment:{{monthlyPayment | currency}} " textWrap="true"></Label>
         <Label id="loan-amount" class="center" text="Loan Total: {{totalToPay | currency}} " textWrap="true"></Label>
-        <Label id="terms" class="center" [text]="loanParameters.interest + ' % APR   '  + loanParameters.months +  ' Months'" textWrap="true"
-           ></Label>
+        <Label id="terms" class="center" [text]="loanParameters.interest + ' % APR   '  + loanParameters.months +  ' Months'" 
+        textWrap="true" ></Label>
         <Button class="btn" text="Calculate" (tap)="getData()" *ngIf="!isDataCalculated" horizontalAlignment="center"></Button>
         <Button class="btn" text="Calculate a New Loan" (tap)="calculateNew()" *ngIf="isDataCalculated" horizontalAlignment="center"></Button>
 
@@ -18,7 +18,7 @@
             <TKDataFormGridLayout tkPropertyGroupLayout></TKDataFormGridLayout>
             <TKEntityProperty tkPropertyGroupProperties name="loanAmount" displayName="Loan Amount" index="0" columnIndex="0">
                 <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
-                    <TKRangeValidator tkEntityPropertyValidators errorMessage="Loan Amount Cannot be Lesser than $4,500" minimum="4500" maximum="10000000"></TKRangeValidator>
+                    <TKRangeValidator tkEntityPropertyValidators errorMessage="Loan Amount should be greater than 0" minimum="0" maximum="10000000"></TKRangeValidator>
                     <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
                     <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
                 </TKPropertyEditor>
@@ -26,6 +26,7 @@
 
             <TKEntityProperty tkPropertyGroupProperties name="downPayment" displayName="Down Payment" index="1" columnIndex="0">
                 <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
+                        <TKRangeValidator tkEntityPropertyValidators errorMessage="Down Payment should be greater than 0" minimum="0" maximum="10000000"></TKRangeValidator>
                     <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
                     <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
                 </TKPropertyEditor>
@@ -34,7 +35,7 @@
                 <TKPropertyEditor tkEntityPropertyEditor type="Decimal">
                     <TKPropertyEditorStyle tkPropertyEditorStyle></TKPropertyEditorStyle>
                     <TKNonEmptyValidator tkEntityPropertyValidators></TKNonEmptyValidator>
-                    <TKRangeValidator tkEntityPropertyValidators errorMessage="Interest Rate cannot be lesser than .50% or higher than 30%" minimum=".50" maximum="30"></TKRangeValidator>
+ 
                 </TKPropertyEditor>
             </TKEntityProperty>
             <TKEntityProperty tkPropertyGroupProperties name="months" displayName="Months" index="3" columnIndex="0">
@@ -62,8 +63,8 @@
         <ng-template tkListViewHeader>
             <GridLayout rows="*, auto" columns="65, *, *, *" id="header-grid">
                 <Label class="header-margin" text="Month" row="0" col="0" textWrap="true"></Label>
-                <Label class="header-margin" text="Interest" row="0" col="1" textWrap="true"></Label>
-                <Label class="header-margin" text="Principal" row="0" col="2" textWrap="true"></Label>
+                <Label class="header-margin" text="PTD Interest" row="0" col="1" textWrap="true"></Label>
+                <Label class="header-margin" text="PTD Principal" row="0" col="2" textWrap="true"></Label>
                 <Label class="header-margin" text="Balance" row="0" col="3" textWrap="true"></Label>
                 <StackLayout orientation="horizontal" row="1" colSpan="4" class="hr-dark" opacity=".4">
 

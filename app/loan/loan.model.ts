@@ -1,10 +1,10 @@
 export class LoanModel
 {
     constructor(
-        public interest:number =3.0,
-        public downPayment:number =2600, 
+        public interest:number =3.5,
+        public downPayment:number =1, 
         public months:number =26, 
-        public loanAmount:number=25000)
+        public loanAmount:number=0)
         {}
 }
 export class LoanSummary {

@@ -38,7 +38,7 @@ export class LoanComponent implements OnInit {
     ngOnInit(): void { }
 
     @ViewChild("myDataForm") dataFormComp: RadDataFormComponent;
-    //@ViewChild("resultLabel") resultLabel: ElementRef;
+    @ViewChild("resultLabel") resultLabel: ElementRef;
     public isDataCalculated: boolean = false;
     public hasErrorsLabel: string;
     public hasError: boolean = null;
@@ -55,6 +55,7 @@ export class LoanComponent implements OnInit {
     public getData() {
         var hasErrors = this.dataFormComp.dataForm.hasValidationErrors();
         if (!hasErrors) {
+            this.hasError =false;
             loader.show(options); // options is optional
             this.dataManagerService.GetLoanSummaryData(this.loanParameters)
 
@@ -70,7 +71,9 @@ export class LoanComponent implements OnInit {
                     this.finalCost = this.loanSummaryData.finalCost;
                     this.isDataCalculated = true;
                     loader.hide();
-                });
+                }).catch(()=>{
+                    console.log("weord");
+                    this.hasError =false, loader.hide()});
         };
     }
 
