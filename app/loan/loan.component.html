@@ -1,10 +1,10 @@
 <StatusBar barColor="#0288D1"></StatusBar>
 <ActionBar title="Loan Assitant" icon="" class="action-bar">
     <StackLayout>
-        <Label id="loan-amount" class="center" [text]="totalToPay | currency " textWrap="true"></Label>
-        <Label id="monthly-payment" class="center" text="Monthly Payment: {{monthlyPayment | currency}} " textWrap="true"></Label>
+        <Label id="monthly-payment" class="center" text="Monthly Payment:{{monthlyPayment | currency}} " textWrap="true"></Label>
+        <Label id="loan-amount" class="center" text="Loan Total: {{totalToPay | currency}} " textWrap="true"></Label>
         <Label id="terms" class="center" [text]="loanParameters.interest + ' % APR   '  + loanParameters.months +  ' Months'" textWrap="true"
-            fontSize="16dp"></Label>
+           ></Label>
         <Button class="btn" text="Calculate" (tap)="getData()" *ngIf="!isDataCalculated" horizontalAlignment="center"></Button>
         <Button class="btn" text="Calculate a New Loan" (tap)="calculateNew()" *ngIf="isDataCalculated" horizontalAlignment="center"></Button>
 

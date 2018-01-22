@@ -4,16 +4,13 @@
     height: 200dp;
 }
 
-#loan-amount{
-    font-size: 36dp;
+#monthly-payment{
+
+    font-size: 24dp;
     font-weight: bold;
 }
 
-#monthly-payment{
-    font-size: 18dp;
-}
-
-#terms{
+#terms, #loan-amount{
     font-size: 16dp;
 }
 

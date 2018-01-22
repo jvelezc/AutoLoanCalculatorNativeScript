@@ -10,7 +10,7 @@ import { Label } from "tns-core-modules/ui/label";
 var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 var loader = new LoadingIndicator();
 var options = {
-    message: 'Getting Loan Details...',
+    message: 'Calculating payment schedule...',
     progress: 0.65,
     android: {
         indeterminate: true,
@@ -38,7 +38,7 @@ export class LoanComponent implements OnInit {
     ngOnInit(): void { }
 
     @ViewChild("myDataForm") dataFormComp: RadDataFormComponent;
-    @ViewChild("resultLabel") resultLabel: ElementRef;
+    //@ViewChild("resultLabel") resultLabel: ElementRef;
     public isDataCalculated: boolean = false;
     public hasErrorsLabel: string;
     public hasError: boolean = null;
@@ -54,8 +54,7 @@ export class LoanComponent implements OnInit {
     public tabSelectedIndex: number = 0;
     public getData() {
         var hasErrors = this.dataFormComp.dataForm.hasValidationErrors();
-        if (hasErrors != true) {
-            this.hasError = false;
+        if (!hasErrors) {
             loader.show(options); // options is optional
             this.dataManagerService.GetLoanSummaryData(this.loanParameters)
 

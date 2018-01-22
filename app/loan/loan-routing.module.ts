@@ -1,4 +1,3 @@
-import { LoanDetailsComponent } from './loandetails/loan-details.component';
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
@@ -8,9 +7,7 @@ const routes: Routes = [
     {
         path: "", component: LoanComponent
         
-    }, 
-    { path: "loandetails", component: LoanDetailsComponent }
-   
+    }
 ]
 
 

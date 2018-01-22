@@ -7,7 +7,6 @@ import { DataManagerService } from "./../../app/datasource/data.service";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
-import { LoanDetailsComponent } from "./loandetails/loan-details.component";
 import { TNSFontIconModule, TNSFontIconService } from 'nativescript-ngx-fonticon';
 @NgModule({
     providers:[DataManagerService,TNSFontIconService],
@@ -20,9 +19,7 @@ import { TNSFontIconModule, TNSFontIconService } from 'nativescript-ngx-fonticon
         LoanRoutingModule
     ],
     declarations: [
-        LoanComponent,
-        LoanDetailsComponent
-      
+        LoanComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
